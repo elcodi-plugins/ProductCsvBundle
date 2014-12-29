@@ -1,0 +1,20 @@
+services:
+
+    #
+    # Services
+    #
+    elcodi.plugin.product_csv.exporter:
+        class: %elcodi.plugin.product_csv.exporter.class%
+        arguments:
+            - @elcodi.plugin.product_csv.csv_exporter
+
+    elcodi.plugin.product_csv.csv_exporter:
+        class: Goodby\CSV\Export\Standard\Exporter
+        arguments:
+            - @elcodi.plugin.product_csv.csv_exporter_config
+
+    elcodi.plugin.product_csv.csv_exporter_config:
+        class: Goodby\CSV\Export\Standard\ExporterConfig
+        calls:
+            - [setDelimiter, [',']]
+            - [setNewline, ["\n"]]
