@@ -1,0 +1,12 @@
+services:
+
+    #
+    # Twig renderer
+    #
+    elcodi.plugin.product_csv.renderer:
+        class: Elcodi\Plugin\ProductCsv\Templating\TwigRenderer
+        arguments:
+            - @twig
+            - @elcodi.hook_system
+        tags:
+            - { name: kernel.event_listener, event: bamboo_admin.table_buttons, method: renderButtons }
